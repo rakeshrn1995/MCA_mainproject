@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title> House Member Registration</title>
+    {% load static %}
+    {% load crispy_forms_tags %}
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/reg.css' %}"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container-fluid" style="width:800px; margin:50px auto;"   >
+
+    <!--<div class="row justify-content-center">-->
+        <div class="card">
+            <div class="col-sm-5 col-md-6 col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form method="post" >
+        {% csrf_token %}
+
+        {{ form|crispy }}
+        {{ r_form|crispy }}
+
+         <div class="wrapper"><input type="submit" class="btn btn-primary" value="Register" /></div>
+
+    </form>
+            </div>
+
+        <!--</div>-->
+
+    </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+</body>
+</html>

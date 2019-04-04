@@ -1,0 +1,16 @@
+
+.ml-auto .dropdown-menu {
+      left: auto !important;
+      right: 0px;
+      }
+
+div.card {
+
+background-color: transparent;
+}
+.select.form-control{
+background-color: transparent;
+}
+.textInput.form-control{
+background-color: transparent;
+}

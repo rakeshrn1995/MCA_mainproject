@@ -23,6 +23,7 @@
 		    <h2 class="text-center">Login Now</h2>
 		    <form class="login-form" action="{% url 'login:login' %}" method="post">
 				{% csrf_token%}
+
   <div class="form-group">
     <label for="exampleInputEmail1" class="text-uppercase">Username</label>
     <input type="text" class="form-control" placeholder="" name="loginEmail" required autofocus autocomplete="off">
@@ -31,32 +32,36 @@
   <div class="form-group">
     <label for="exampleInputPassword1" class="text-uppercase">Password</label>
     <input type="password" class="form-control" placeholder="" name="loginPassword" required>
+
   </div>
 
+
+                 <div class="row">
+                     <label for="exampleInputEmail1" class="text-uppercase" style="visibility:hidden;">Invalid Credinals</label>
+                      {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                  <center><p style="color: red";>{{ message }}</p></center>
+							</div>
+            {% endfor %}
+          {% endif %}
+
+        </div>
 
     <div class="form-check">
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input">
-      <small>Remember Me</small>
-    </label>
-    <button type="submit" class="btn btn-login float-right btn-primary">Submit</button>
-  </div>
+
+
+
+        <button type="submit" class="btn btn-login float-right btn-primary">Submit</button>
+     </div>
+<a href="signup/"name="register">New Register..?</a>
 
 </form>
 
   </div>
     </div>
     </div>
-        <div class="row">
-            {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                  <center><p style="color: yellow";>{{ message }}</p></center>
-							</div>
-            {% endfor %}
-          {% endif %}
 
-        </div>
 </section>
 
 </body>

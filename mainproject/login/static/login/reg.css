@@ -1,6 +1,6 @@
 body {
-		background: white url("images/back1.jpg ");
-
+		/*background: white url("images/bg2.png");*/
+		background: radial-gradient(ellipse at center,  #0264d6 1%,#1c2b5a 100%); /* W3C */
 	}
 
 	.container{
@@ -17,3 +17,13 @@ body {
 
 	}
 
+.form-control{
+    background-color: transparent;
+}
+
+.select.form-control{
+background-color: transparent;
+}
+.textinput.textInput.form-control{
+background-color: transparent;
+}

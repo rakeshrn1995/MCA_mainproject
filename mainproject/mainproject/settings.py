@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     # local apps
     'login.apps.LoginConfig',
+    'manager.apps.ManagerConfig',
+    'user',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -130,5 +132,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

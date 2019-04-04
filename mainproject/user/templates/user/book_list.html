@@ -1,0 +1,35 @@
+{% extends 'user/Userbase.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Book Details{% endblock %}
+
+{% block content%}<h4><center>BOOKS</center></h4>
+{% endblock %}
+{% block body %}
+
+    <div class="main">
+        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+            <div class="card">
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <ul>
+                                 {% for book in book_list %}
+                                 <li><a href="{% url 'user:detail' book.id   %}">{{ book.book_name }}</a> </li>
+                                 {% endfor %}
+                                 </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,35 @@
+{% extends 'user/Userbase.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Maintenance Register{% endblock %}
+
+{% block content%}<h4><center>Apply ...</center></h4>
+{% endblock %}
+{% block body %}
+
+    <div class="main">
+        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+            <div class="card">
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Apply" /></div>
+                            </form>
+                            <script>
+                                $('#id_requested_date').datepicker({ uiLibrary: 'bootstrap4', modal: true, footer: true });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}

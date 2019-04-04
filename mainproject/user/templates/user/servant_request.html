@@ -1,0 +1,53 @@
+{% extends 'user/Userbase.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Book Details{% endblock %}
+
+{% block content%}<h4><center>Register Books...</center></h4>
+{% endblock %}
+{% block body %}
+
+    <div class="main">
+        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form method="post" enctype="multipart/form-data" id="RequestForm" data-servant-url="{% url 'user:ajax_load_servants' %}">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Enter Your Book" /></div>
+                            </form>
+                            <script>
+                                 $('#id_date').datepicker({ uiLibrary: 'bootstrap4', modal: true, footer: true });
+                            </script>
+
+                            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                            <script>
+                                $("#id_job").change(function () {
+                                var url = $("#RequestForm").attr("data-servant-url");
+                                var jobId = $(this).val();
+                                console.log(deptId)
+
+                                $.ajax({
+                                url: url,
+                                data: {
+                                'job': jobId
+                                },
+                                success: function (data) {
+                                $("#id_servant").html(data);
+                                }
+                                });
+
+                                });
+
+
+                            </script>
+
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+{% endblock %}

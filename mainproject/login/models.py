@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 GENDER_CHOICES = (('male', 'Male'), ('female', 'Female'))
 TYPE_CHOICES = (('user', 'User'), ('manager', 'Manager'))
 
+
 class BloodGrp(models.Model):
     blood_grp = models.CharField(max_length=10)
 
@@ -29,24 +30,12 @@ class RegUser(models.Model):
     house_number = models.CharField(max_length=50, blank=True, null=False)
     phone = models.CharField(max_length=12, blank=True, null=False)
     user_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
-    photo = models.ImageField(upload_to='media/profilepics/', blank=True, null=True)
+    photo = models.ImageField(upload_to='profilepics/', blank=True, null=True, default='default.jpg')
 
 
     def __str__(self):
         return self.user.username
 
-
-
-class MemReg(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    age = models.IntegerField(default=0)
-    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
-    blood_group = models.ForeignKey(BloodGrp, on_delete=models.CASCADE)
-    job = models.CharField(max_length=50, blank=True, null=False)
-    photo = models.ImageField(upload_to='media/profilepics/', blank=True, null=True)
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.username
+class ActivityCtg(models.Model):
+    ctg_name = models.CharField(max_length=200)
 

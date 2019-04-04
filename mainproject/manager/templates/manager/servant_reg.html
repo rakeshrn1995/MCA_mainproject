@@ -1,0 +1,25 @@
+{% extends 'manager/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Servant Register{% endblock %}
+{% block content%}<h4><b>Add New Servants...</b></h4>{% endblock %}
+
+
+{% block body %}
+
+
+
+
+
+<form method="post" >
+
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="wrapper"><center><input type="submit" class="btn btn-primary" value="Register" /></center></div>
+
+</form>
+<script>
+        $('#id_date_of_joining').datepicker({ uiLibrary: 'bootstrap4', modal: true, footer: true });
+   </script>
+
+{% endblock %}
+

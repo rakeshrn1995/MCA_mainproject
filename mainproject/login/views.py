@@ -1,11 +1,13 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .forms import SignupForm, RegUserForm, MemRegForm
+from .forms import *
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+
+from login import config
 
 
 # # Create your views here.
@@ -33,8 +35,11 @@ def login_def(request):
 
         if user:
             login(request, user)
+            config.username = user.username
+            print(config.username)
+
            # print('checking')
-            return render(request, 'login/home.html', {'un': username})
+            return render(request, 'user/Userbase.html', {'un': username})
         else:
             print('error')
             messages.error(request, 'Invalid credentials !')
@@ -68,26 +73,13 @@ def signup_view(request):
             return redirect('login:login')
     return render(request, 'login/user_registration.html', {'form': form, 'r_form': reguserform})
 
-def memreg_view(request):
-
-    form = MemRegForm()
-
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return redirect('login:mem_reg')
-
-    return render(request, 'login/mem_reg.html', {'form': form})
-
-
-
-
 def home_page(request):
     return render(request, 'login/home.html')
 
 
 
+def test_view(request):
+
+    return render(request, 'login/test.html')
 
 

@@ -1,0 +1,29 @@
+{% extends 'useradmin/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Add Medical Camp{% endblock %}
+
+{% block body %}
+{% block content%}<h2>Add  Camp Details</h2>
+{% endblock %}
+<div class="main">
+
+        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form method="post" >
+                                {% csrf_token %}
+                                {{ form|crispy }}
+
+                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Submit" /></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+<script>
+   $('#id_conduct_date').datepicker({ uiLibrary: 'bootstrap4', modal: true, footer: true });
+    $('#id_time').timepicker();
+</script>
+{% endblock %}

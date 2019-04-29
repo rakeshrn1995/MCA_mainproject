@@ -1,0 +1,27 @@
+
+{% extends 'useradmin/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Add Activities{% endblock %}
+
+
+
+{% block body %}
+{% block content%}<h4>Add Activities</h4>{% endblock %}
+<div class="main">
+
+        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form method="post" >
+                                {% csrf_token %}
+                                {{ form|crispy }}
+
+                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Add" /></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

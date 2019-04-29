@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block title %}Book Details{% endblock %}
 
-{% block content%}<h4><center>Register Books...</center></h4>
+{% block content%}<h4><center>Request A Servant</center></h4>
 {% endblock %}
 {% block body %}
 
@@ -14,19 +14,46 @@
                         <div class="panel-body">
                             <form method="post" enctype="multipart/form-data" id="RequestForm" data-servant-url="{% url 'user:ajax_load_servants' %}">
                                 {% csrf_token %}
-                                {{ form|crispy }}
-                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Enter Your Book" /></div>
+                               <!-- {{ form|crispy }}-->
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 mb-0">
+                                        {{ form.username|as_crispy_field }}
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                      <div class="form-group col-md-6 mb-0">
+                                        {{ form.job|as_crispy_field }}
+                                      </div>
+                                      <div class="form-group col-md-6 mb-0">
+                                        {{ form.servant|as_crispy_field }}
+                                      </div>
+
+                                </div>
+                                <div class="form-row">
+
+                                      <div class="form-group col-md-6 mb-0">
+                                        {{ form.date|as_crispy_field }}
+                                      </div>
+                                </div>
+                                <div class="form-row">
+                                      <div class="form-group col-md-12 mb-0">
+                                        {{ form.description|as_crispy_field }}
+                                      </div>
+                                </div>
+                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Submit" /></div>
                             </form>
                             <script>
                                  $('#id_date').datepicker({ uiLibrary: 'bootstrap4', modal: true, footer: true });
                             </script>
+
 
                             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
                             <script>
                                 $("#id_job").change(function () {
                                 var url = $("#RequestForm").attr("data-servant-url");
                                 var jobId = $(this).val();
-                                console.log(deptId)
+                                console.log(jobId)
 
                                 $.ajax({
                                 url: url,

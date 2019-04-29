@@ -2,25 +2,54 @@
 {% load crispy_forms_tags %}
 {% block title %}Book Details{% endblock %}
 
-{% block content%}<h4><center>BOOKS</center></h4>
+{% block content%}<h4><center></center></h4>
 {% endblock %}
 {% block body %}
 
     <div class="main">
         <div class="container-fluid" style="width:800px; margin:20px auto;"   >
-            <div class="card">
+
                 <div class="col-sm-4 col-md-5 col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <!--<img src="{{ book.album_logo }}">-->
+                           <div class="row">
 
-                            <h1>{{ book.book_name }}</h1>
-                             <h3>{{ book.author }}</h3>
+                                <!-- Left Album Info -->
+                                <div class="col-sm-4 col-md-3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                             <table style=" border-collapse: separate; border-spacing: 60px;">
+                                                <tr>
+                                                    <th>
+                                                <!--give modelname in lowercase for detailview-->
+                                                {% if bookdetail.image %}
+                                                    <img src="{{ bookdetail.image.url }}" class="img-responsive" height="200px">
+                                                {% else %}
+                                                    <h3>No image to display</h3>
+                                                {% endif %}
+                                            </th>
+                                            <td>
+
+
+                                            <h2>{{ bookdetail.book_name }}</h2>
+                                            <h3><small>{{ bookdetail.author }}</small></h3>
+                                            {{ bookdetail.description }}<br>
+                                            <a href="{{ bookdetail.book_file.url}}" download="{{ bookdetail.book_name }}">
+                                                <h5>Download</h5>
+                                            </a>
+                                            </td>
+                                                </tr>
+                                                </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 

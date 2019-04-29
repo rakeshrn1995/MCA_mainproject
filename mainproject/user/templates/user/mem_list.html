@@ -1,0 +1,38 @@
+{% extends 'user/Userbase.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Member Details{% endblock %}
+
+{% block content%}<h4><center>Family..</center></h4>
+{% endblock %}
+{% block body %}
+<div class="main">
+
+        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                            <table  cellpadding="15" cellspacing="15" border="3">
+
+                            {{ user }}<br>
+                                {% for mem in mem_detail %}
+                                {{ mem.username }}
+
+
+                                   <tr>
+                                       <td><img src="{{ mem.photo.url }}" alt="Image" height="50px" width="45px"  class="img-responsive" > {{ mem.first_name}} {{ mem.last_name }}</td>
+                                       <td><b><a href="#">Update</a></b></td>
+                                   </tr>
+
+                                {% endfor %}
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+

@@ -6,7 +6,7 @@ from .models import *
 class SignupForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name','email', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -20,7 +20,7 @@ class RegUserForm(forms.ModelForm):
 
     class Meta:
         model = RegUser
-        fields = ['age', 'gender', 'blood_group', 'job', 'house_name', 'house_number', 'phone', 'user_type']
+        fields = ['age', 'gender', 'blood_group',  'house_name', 'house_number', 'job', 'phone', 'user_type']
 
 
 

@@ -9,7 +9,7 @@
 <div class="main">
 
         <div class="container-fluid" style="width:800px; margin:20px auto;"   >
-            <div class="card">
+
                 <div class="col-sm-4 col-md-5 col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
@@ -17,12 +17,12 @@
                                 {% csrf_token %}
                                 {{ u_form|crispy }}
                                 {{ p_form|crispy }}
-                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Signup" /></div>
+                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Update" /></div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
+
         </div>
     </div>
 {% endblock %}

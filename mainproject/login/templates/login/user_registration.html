@@ -13,7 +13,7 @@
 
 
             .form-control{
-                background-color: transparent;
+                background-color: transparent  !important;
             }
             .select.form-control{
 background-color: transparent;
@@ -64,14 +64,87 @@ background-color: transparent;
 
     <!--<div class="row justify-content-center">-->
        <!-- <div class="card">-->
-            <div class="col-sm-4 col-md-5 col-lg-12">
+            <div class="col-sm-4 col-md-5 col-lg-10">
         <div class="panel panel-default">
             <div class="panel-body">
-                <form method="post" >
+                <form method="post" autocomplete="off" >
         {% csrf_token %}
 
-        {{ form|crispy }}
-        {{ r_form|crispy }}
+        <!--{{ form|crispy }}-->
+        <!--{{ r_form|crispy }}-->
+
+                     <div class="form-row">
+                        <div class="form-group col-md-12 mb-0">
+                            {{ form.username|as_crispy_field }}
+                        </div>
+
+                     </div>
+                     <div class="form-row">
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.first_name|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.last_name|as_crispy_field }}
+                          </div>
+                     </div>
+
+                    <div class="form-row">
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form.email|as_crispy_field }}
+                          </div>
+                     </div>
+
+                    <div class="form-row">
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form.password1|as_crispy_field }}
+                          </div>
+
+                     </div>
+
+                    <div class="form-row">
+
+                          <div class="form-group col-md-12 mb-0">
+                            {{ form.password2|as_crispy_field }}
+                          </div>
+                     </div>
+
+                    <div class="form-row">
+                          <div class="form-group col-md-3 mb-0">
+                            {{ r_form.age|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ r_form.gender|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-3 mb-0">
+                            {{ r_form.blood_group|as_crispy_field }}
+                          </div>
+
+
+                     </div>
+
+                    <div class="form-row">
+                          <div class="form-group col-md-8 mb-0">
+                            {{ r_form.house_name|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-4 mb-0">
+                            {{ r_form.house_number|as_crispy_field }}
+                          </div>
+                     </div>
+
+                    <div class="form-row">
+                          <div class="form-group col-md-8 mb-0">
+                            {{ r_form.job|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-4 mb-0">
+                            {{ r_form.phone|as_crispy_field }}
+                          </div>
+                     </div>
+                    <div class="form-row">
+                          <div class="form-group col-md-3 mb-0">
+                            {{ r_form.user_type|as_crispy_field }}
+                          </div>
+
+                     </div>
 
          <div class="wrapper"><input type="submit" class="btn btn-primary" value="Signup" /></div>
 

@@ -1,0 +1,16 @@
+<div class="row">
+	{% if language %}
+	{% for l in language %}
+	<div class="col-sm-4 col-md-4" style="padding-bottom: 50px;font-family:monospace;">
+		<div class="thumbnail" >
+			<a href="{% url 'user:detail' l.id %}"><img src="{{ l.image.url }}" alt="Image" height="200px" width="150px" class="img-responsive"></a>
+				<div class="caption">
+					 <h4 style="color: white;">{{ l.book_name }}</h4>
+					 <b style="font-size:20px">{{ l.author }}</b><br>
+					 <small style="font-size:15px"> {{ l.language }}</small>
+				</div>
+		</div>
+	</div>
+	{% endfor %}
+	{% endif %}
+</div>

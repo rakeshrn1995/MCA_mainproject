@@ -8,13 +8,39 @@
 
     <div class="main">
         <div class="container-fluid" style="width:800px; margin:20px auto;"   >
-            <div class="card">
                 <div class="col-sm-4 col-md-5 col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                {{ form|crispy }}
+                                <!--{{ form|crispy }}-->
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 mb-0">
+                                        {{ form.username|as_crispy_field }}
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                      <div class="form-group col-md-6 mb-0">
+                                        {{ form.type|as_crispy_field }}
+                                      </div>
+                                      <div class="form-group col-md-6 mb-0">
+                                        {{ form.requested_date|as_crispy_field }}
+                                      </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 mb-0">
+                                        {{ form.subject|as_crispy_field }}
+                                    </div>
+
+                                </div>
+                                 <div class="form-row">
+                                    <div class="form-group col-md-12 mb-0">
+                                        {{ form.description|as_crispy_field }}
+                                    </div>
+
+                                </div>
+
                                 <div class="wrapper"><input type="submit" class="btn btn-primary" value="Apply" /></div>
                             </form>
                             <script>
@@ -22,7 +48,6 @@
                             </script>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

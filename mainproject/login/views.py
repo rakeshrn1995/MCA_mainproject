@@ -33,13 +33,17 @@ def login_def(request):
         # print(password)
         user = authenticate(request, username=username, password=password)
 
-        if user:
+        if user.is_superuser:
+            return render(request, 'useradmin/adminhome.html')
+        elif user:
             login(request, user)
-            config.username = user.username
-            print(config.username)
+            config.username = str(user.username)
+            config.u_id = str(user.id)
+            print(type(config.username))
 
            # print('checking')
             return render(request, 'user/Userbase.html', {'un': username})
+
         else:
             print('error')
             messages.error(request, 'Invalid credentials !')

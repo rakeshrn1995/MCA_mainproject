@@ -18,7 +18,7 @@ body {
 	}
 
 .form-control{
-    background-color: transparent;
+    background-color: transparent !important;
 }
 
 .select.form-control{

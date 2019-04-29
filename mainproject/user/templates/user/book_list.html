@@ -1,30 +1,91 @@
+
 {% extends 'user/Userbase.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block title %}Book Details{% endblock %}
+
+<!--<link rel="stylesheet" type="text/css" href="{% static 'user/book_list.css' %}">-->
 
 {% block content%}<h4><center>BOOKS</center></h4>
 {% endblock %}
 {% block body %}
 
     <div class="main">
+
         <div class="container-fluid" style="width:800px; margin:20px auto;"   >
-            <div class="card">
+            <form method="post" id="RequestForm" data-book-lang-url="{% url 'user:ajax_load_language' %}">
+                 {% csrf_token %}
+                {{ form|crispy }}
+               <!-- <fieldset>
+                    <p>
+                        <label>Select Language</label>
+
+                        <select id = "id_select">
+                            {% for l in langauge %}
+                            <option> l.language</option>
+                            {% endfor %}
+                        &lt;!&ndash;   <option value = "all">All</option>
+                           <option value = "malayalam">Malayalam</option>
+                           <option value = "english">English</option>
+                           <option value = "hindi">Hindi</option>&ndash;&gt;
+                        </select>
+
+                    </p>
+               </fieldset>-->
+            </form>
+
                 <div class="col-sm-4 col-md-5 col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-body">
-                            <ul>
-                                 {% for book in book_list %}
-                                 <li><a href="{% url 'user:detail' book.id   %}">{{ book.book_name }}</a> </li>
-                                 {% endfor %}
-                                 </ul>
+                        <div class="panel-body" id="loadbooks" >
+                            <div class="row" >
+                                {% if book_list %}
+                                    {% for book in book_list %}
+                                        <div class="col-sm-4 col-md-4" style="padding-bottom: 50px;font-family:monospace;">
+                                            <div class="thumbnail" >
+                                                <a href="#">
+                                                        <img src="{{ book.image.url }}" alt="Image" height="200px" width="150px"  class="img-responsive">
+                                                </a>
+                                                <div class="caption">
+                                                    <h4 style="color: white;">{{ book.book_name }}</h4>
+                                                    <b style="font-size:20px">{{ book.author }}</b><br>
+                                                    <small style="font-size:15px"> {{ book.language }}</small>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--{% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}-->
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
 
                         </div>
                     </div>
                 </div>
-            </div>
+
         </div>
     </div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
+
+<script>
+    $("#id_language").change(function () {
+        var url = $("#RequestForm").attr("data-book-lang-url");
+        var id = $(id_language).val();
+        console.log(id)
+
+        $.ajax({
+            url: url,
+            data: {
+                'id': id
+            },
+            success: function (data) {
+                $("#loadbooks").html(data);
+            }
+        });
+
+    });
+</script>
 
 
 

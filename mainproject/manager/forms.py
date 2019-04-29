@@ -12,3 +12,6 @@ class SignUpServantForm(forms.ModelForm):
         fields = '__all__'
         exclude = ['photo']
 
+    def __init__(self, *args, **kwargs):
+        super(SignUpServantForm, self).__init__(*args, **kwargs)
+        self.fields['address'].widget.attrs['rows'] = 5

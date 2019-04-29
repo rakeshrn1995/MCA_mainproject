@@ -1,1 +1,3 @@
-username=""
+username = ""
+u_id=""
+email = ""

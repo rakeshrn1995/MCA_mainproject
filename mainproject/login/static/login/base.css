@@ -4,9 +4,8 @@
       right: 0px;
       }
 
-div.card {
-
-background-color: transparent;
+.form-control{
+    background-color: transparent !important;
 }
 .select.form-control{
 background-color: transparent;
@@ -14,3 +13,21 @@ background-color: transparent;
 .textInput.form-control{
 background-color: transparent;
 }
+body {
+		background: white url("images/bg2.png");
+		/*background: radial-gradient(ellipse at center,  #0264d6 1%,#1c2b5a 100%);  W3C */
+	}
+
+	.container{
+		margin-top: 5%;
+	}
+	.container-fluid{
+	    position: inherit;
+        left: 500px;
+        top: 50px;
+
+	}
+	.wrapper{
+	    text-align: center;
+
+	}

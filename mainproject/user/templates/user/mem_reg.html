@@ -9,20 +9,58 @@
 <div class="main">
 
         <div class="container-fluid" style="width:800px; margin:20px auto;"   >
-            <div class="card">
                 <div class="col-sm-4 col-md-5 col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <form method="post" >
                                 {% csrf_token %}
-                                {{ form|crispy }}
-                                {{ r_form|crispy }}
+                               <!-- {{ form|crispy }}
+                                {{ r_form|crispy }}-->
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 mb-0">
+                                        {{ form.username|as_crispy_field }}
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                      <div class="form-group col-md-6 mb-0">
+                                        {{ form.first_name|as_crispy_field }}
+                                      </div>
+                                      <div class="form-group col-md-6 mb-0">
+                                        {{ form.last_name|as_crispy_field }}
+                                      </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3 mb-0">
+                                        {{ form.age|as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                        {{ form.gender|as_crispy_field }}
+                                    </div>
+
+                                    <div class="form-group col-md-3 mb-0">
+                                        {{ form.blood_group|as_crispy_field }}
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 mb-0">
+                                        {{ form.job|as_crispy_field }}
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 mb-0">
+                                        {{ form.photo|as_crispy_field }}
+
+                                    </div>
+                                </div>
                                 <div class="wrapper"><input type="submit" class="btn btn-primary" value="Signup" /></div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 {% endblock %}

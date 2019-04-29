@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'login.apps.LoginConfig',
     'manager.apps.ManagerConfig',
     'user',
+    'useradmin',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

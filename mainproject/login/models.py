@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 # class login(models.Model):
 #     usnm = models.CharField(max_length=50)
 #     pswd = models.CharField(max_length=50)
-
+from django.urls import reverse
 
 GENDER_CHOICES = (('male', 'Male'), ('female', 'Female'))
 TYPE_CHOICES = (('user', 'User'), ('manager', 'Manager'))
@@ -28,11 +28,12 @@ class RegUser(models.Model):
     job = models.CharField(max_length=50, blank=True, null=False)
     house_name = models.CharField(max_length=100, blank=True, null=False)
     house_number = models.CharField(max_length=50, blank=True, null=False)
-    phone = models.CharField(max_length=12, blank=True, null=False)
-    user_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
+    phone = models.CharField(max_length=10, blank=True, null=False)
+    user_type = models.CharField(max_length=10, choices=TYPE_CHOICES, default='user')
     photo = models.ImageField(upload_to='profilepics/', blank=True, null=True, default='default.jpg')
 
-
+    def get_absolute_url(self):
+        return reverse()
     def __str__(self):
         return self.user.username
 

@@ -1,7 +1,7 @@
 {% extends 'manager/base.html' %}
 {% load crispy_forms_tags %}
 {% block title %}Servant Register{% endblock %}
-{% block content%}<h4><b>Add New Servants...</b></h4>{% endblock %}
+{% block content%}<center><h4><b>Add New Servants...</b></h4></center>{% endblock %}
 
 
 {% block body %}
@@ -10,10 +10,46 @@
 
 
 
-<form method="post" >
+<form method="post" autocomplete="off" >
 
     {% csrf_token %}
-    {{ form|crispy }}
+    <!--{{ form|crispy }}-->
+
+
+                     <div class="form-row">
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.first_name|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.last_name|as_crispy_field }}
+                          </div>
+                     </div>
+                            {{ form.address|as_crispy_field }}
+
+
+                    <div class="form-row">
+                          <div class="form-group col-md-3 mb-0">
+                            {{ form.age|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-3 mb-0">
+                            {{ form.gender|as_crispy_field }}
+                          </div>
+                           <div class="form-group col-md-6 mb-0">
+                            {{ form.phone|as_crispy_field }}
+                          </div>
+                     </div>
+
+                    <div class="form-row">
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.job_type|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.date_of_joining|as_crispy_field }}
+                          </div>
+
+                     </div>
+
+    </div>
     <div class="wrapper"><center><input type="submit" class="btn btn-primary" value="Register" /></center></div>
 
 </form>

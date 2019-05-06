@@ -1,11 +1,9 @@
-
+from django.contrib import messages
 from django.shortcuts import render,get_object_or_404,redirect
 from django.views import generic
 from django.views.generic.edit import FormMixin
-from login.forms import SignupForm
 from manager.models import RegServant
-
-from login.models import RegUser
+from django.db import connection
 from .forms import *
 from django.shortcuts import redirect
 from login import config
@@ -122,13 +120,13 @@ def load_servants(request):
     servants = RegServant.objects.filter(job_type=job).order_by('first_name')
     return render(request, 'user/load_servants.html', {'servant': servants})
 
-# def dictfetchall(cursor):
-#     """Return all rows from a cursor as a dict"""
-#     columns = [col[0] for col in cursor.description]
-#     return [
-#         dict(zip(columns, row))
-#         for row in cursor.fetchall()
-#     ]
+def dictfetchall(cursor):
+    """Return all rows from a cursor as a dict"""
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
 
 def load_lang(request):
     print("hiii")
@@ -193,6 +191,42 @@ def load_lang(request):
 
 
 def member_list_view(request):
-    mem_detail = MemReg.objects.all()
-    user = config.u_id
-    return render(request, 'user/mem_list.html', {'mem_detail': mem_detail})
+    #mem_detail = MemReg.objects.all()
+    cursor = connection.cursor()
+    cursor.execute("""SELECT * FROM user_memreg WHERE username_id ='%d'"""%(int(config.u_id)))
+    mem_detail = {}
+    mem_detail = dictfetchall(cursor)
+    print(mem_detail)
+
+    # for i in mem_detail:
+    #     a= str(i.username)
+    #     print(i.username)
+    #     print(type(a))
+    # print(mem_detail)
+    u = config.u_id
+    print('user : '+u)
+    print(type(u))
+    return render(request, 'user/mem_list.html', {'mem_detail': mem_detail, 'u': u})
+
+
+def user_reg_view(request):
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=request.user)
+        r_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.reguser)
+        if form.is_valid() and r_form.is_valid():
+            form.save()
+            r_form.save()
+            #messages.success(request, f'Your account has been updated!')
+            return redirect('user:user_reg')
+
+    else:
+        form = UserUpdateForm(instance=request.user)
+        r_form = ProfileUpdateForm(instance=request.user.reguser)
+
+    context = {
+        'form': form,
+        'r_form': r_form
+    }
+    return render(request, 'user/user_reg.html', context)

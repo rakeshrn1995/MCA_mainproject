@@ -1,6 +1,6 @@
 body {
 		/*background: white url("images/bg2.png");*/
-		background: radial-gradient(ellipse at center,  #0264d6 1%,#1c2b5a 100%); /* W3C */
+		background: whitesmoke;
 	}
 
 	.container{

@@ -1,0 +1,26 @@
+{% extends 'manager/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Servant Register{% endblock %}
+{% block content%}<center><h4><b>Add New Servants...</b></h4></center>{% endblock %}
+
+
+{% block body %}
+<table  cellpadding="15" cellspacing="15">
+
+
+                                {% for servant in servantdetail %}
+
+
+                                   <tr>
+                                       <td><img src="\media\{{ servant.photo }}" alt="Image" height="50px" width="45px"  class="img-responsive" > {{ servant.first_name }}  {{ servant.last_name}}</td>
+                                       <td><a href="{% url 'manager:servant_detail' servant.id %}" class="btn btn-primary" >Details</a></td>
+                                       <td><button>Delete</button></td>
+                                   </tr>
+                                {% endfor %}
+                            </table>
+
+
+
+
+{% endblock %}
+

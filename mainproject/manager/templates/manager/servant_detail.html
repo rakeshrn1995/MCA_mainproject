@@ -1,0 +1,21 @@
+{% extends 'manager/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Servant Register{% endblock %}
+{% block content%}<center><h4><b>Add New Servants...</b></h4></center>{% endblock %}
+
+
+{% block body %}
+<table  cellpadding="15" cellspacing="15">
+
+
+                                {% for detail in dict %}
+                                    {{ detail.first_name }}
+
+                                {% endfor %}
+                            </table>
+
+
+
+
+{% endblock %}
+

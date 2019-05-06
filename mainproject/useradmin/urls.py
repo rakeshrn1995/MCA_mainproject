@@ -13,6 +13,7 @@ urlpatterns = [
     path('base/', views.test_view, name='base'),
     path('test/', views.sample_view, name='test'),
     path('camp_view', CampListView.as_view(), name='camp_view'),
+    path('add_user', views.add_user_view, name='add_user'),
 
 
 

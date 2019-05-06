@@ -7,23 +7,21 @@
 {% block body %}
 <div class="main">
 
-        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+        <div class="container-fluid" style="width:500px; margin:80px auto;"   >
                 <div class="col-sm-4 col-md-5 col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
 
-                            <table  cellpadding="15" cellspacing="15" border="3">
+                            <table  cellpadding="15" cellspacing="15">
 
-                            {{ user }}<br>
+
                                 {% for mem in mem_detail %}
-                                {{ mem.username }}
 
 
                                    <tr>
-                                       <td><img src="{{ mem.photo.url }}" alt="Image" height="50px" width="45px"  class="img-responsive" > {{ mem.first_name}} {{ mem.last_name }}</td>
+                                       <td><img src="\media\{{ mem.photo }}" alt="Image" height="50px" width="45px"  class="img-responsive" > {{ mem.first_name}} {{ mem.last_name }}</td>
                                        <td><b><a href="#">Update</a></b></td>
                                    </tr>
-
                                 {% endfor %}
                             </table>
 

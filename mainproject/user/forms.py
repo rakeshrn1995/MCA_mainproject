@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from login.models import RegUser
@@ -112,3 +113,14 @@ class MemberList_Form(forms.ModelForm):
         fields = '__all__'
 
 
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = RegUser
+        fields = ['age', 'gender', 'blood_group', 'house_name', 'house_number', 'job', 'phone', 'photo']

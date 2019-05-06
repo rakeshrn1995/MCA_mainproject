@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 GENDER_CHOICES = (('male', 'Male'), ('female', 'Female'))
-TYPE_CHOICES = (('user', 'User'), ('manager', 'Manager'))
+
 
 
 class BloodGrp(models.Model):
@@ -24,13 +24,12 @@ class RegUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     age = models.IntegerField(default=0)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
-    blood_group = models.ForeignKey(BloodGrp, on_delete=models.CASCADE)
+    blood_group = models.ForeignKey(BloodGrp, on_delete=models.CASCADE, default=2)
     job = models.CharField(max_length=50, blank=True, null=False)
     house_name = models.CharField(max_length=100, blank=True, null=False)
     house_number = models.CharField(max_length=50, blank=True, null=False)
     phone = models.CharField(max_length=10, blank=True, null=False)
-    user_type = models.CharField(max_length=10, choices=TYPE_CHOICES, default='user')
-    photo = models.ImageField(upload_to='profilepics/', blank=True, null=True, default='default.jpg')
+    photo = models.ImageField(upload_to='profilepics/', blank=True, default='profilepics/default.jpg')
 
     def get_absolute_url(self):
         return reverse()

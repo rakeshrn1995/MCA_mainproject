@@ -20,7 +20,7 @@ class RegUserForm(forms.ModelForm):
 
     class Meta:
         model = RegUser
-        fields = ['age', 'gender', 'blood_group',  'house_name', 'house_number', 'job', 'phone', 'user_type']
+        fields = ['age', 'gender', 'blood_group',  'house_name', 'house_number', 'job', 'phone']
 
 
 

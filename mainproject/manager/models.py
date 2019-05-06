@@ -24,7 +24,7 @@ class RegServant(models.Model):
         job_type = models.ForeignKey(JobType, on_delete=models.CASCADE)
         date_of_joining = models.DateField(auto_now=False, auto_now_add=False)
         phone = models.CharField(max_length=10, blank=True, null=False)
-        photo = models.ImageField(upload_to='profilepics/', blank=True, null=True, default='default.jpg')
+        photo = models.ImageField(upload_to='profilepics/', blank=True, default='profilepics/default.jpg')
 
         def __str__(self):
             return self.first_name

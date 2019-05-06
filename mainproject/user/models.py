@@ -22,7 +22,7 @@ class MemReg(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.username)
 
 class BookCtg(models.Model):
     category_name = models.CharField(max_length=100)

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 
-from .forms import ActivityCategoryForm, CampForm
+from .forms import  *
 from .models import *
 
 # Create your views here.
@@ -50,3 +50,20 @@ class CampListView(generic.ListView):
     def get_queryset(self):
         return CampRegistration.objects.all()
 
+
+def add_user_view(request):
+    form = AddUserForm()
+    # reguserform = RegUserForm()
+    if request.method == 'POST':
+        print("Check1")
+        form = AddUserForm(request.POST)
+        reguserform = RegUserForm()
+
+        if form.is_valid():
+            print("Check2")
+            user = form.save()
+            reg = reguserform.save(commit=False)
+            reg.user = user
+            reg.save()
+            return redirect('useradmin:add_user')
+    return render(request, 'useradmin/add_user.html', {'form': form})

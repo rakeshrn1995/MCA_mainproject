@@ -6,6 +6,7 @@ from login.models import RegUser
 from login import config
 from django.db.models import Q
 from .models import *
+from useradmin.forms import *
 
 
 
@@ -13,7 +14,7 @@ class MemRegForm(forms.ModelForm):
 
     class Meta:
         model = MemReg
-        fields = ['username', 'first_name', 'last_name', 'age', 'gender', 'blood_group', 'job', 'photo']
+        fields = ['username', 'first_name', 'last_name', 'dob', 'gender', 'blood_group', 'job', 'photo']
 
     def __init__(self, *args, **kwargs):
         super(MemRegForm, self).__init__(*args, **kwargs)
@@ -44,7 +45,7 @@ class BookDetailForm(forms.ModelForm):
         #self.fields['username'].widget.attrs['disabled'] = True
         self.fields['username'].empty_label = None
         self.fields['username'].queryset = User.objects.filter(username=config.username)
-        self.fields['language'].queryset = Language.objects.filter(~Q(id = 1))
+        self.fields['language'].queryset = Language.objects.filter(~Q(id = 5))
         #Entry.objects.filter(~Q(date = 2006))
         self.fields['description'].widget.attrs['rows'] = 5
 
@@ -67,7 +68,7 @@ class MaintainForm(forms.ModelForm):
     class Meta:
         model = MaintainRegister
         fields = '__all__'
-        exclude = ['status']
+        exclude = ['status', 'requested_date', 'solved_date']
 
     def __init__(self, *args, **kwargs):
         super(MaintainForm, self).__init__(*args, **kwargs)
@@ -83,8 +84,16 @@ class MaintainForm(forms.ModelForm):
 class ServantReqForm(forms.ModelForm):
     class Meta:
         model = ServantRequest
-        fields = '__all__'
-        exclude = ['status']
+        fields = ['username', 'job', 'servant', 'request_date', 'day_choice', 'description']
+        labels = {
+            "username": "Username",
+            "job": "Job Type",
+            "servant": "Servant",
+            "request_date": "Choose Date",
+            "day_choice": "Choose Time",
+            "description": "Description",
+        }
+
 
     def __init__(self, *args, **kwargs):
         super(ServantReqForm, self).__init__(*args, **kwargs)
@@ -120,7 +129,24 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
+    def __init__(self, *args, **kwargs):
+        super(UserUpdateForm, self).__init__(*args, **kwargs)
+        # if self.fields['first_name'] == :
+        #     self.fields['first_name'].widget.attrs['disabled'] = True
+        # if self.fields['last_name']:
+        #     self.fields['last_name'].widget.attrs['disabled'] = True
+
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = RegUser
-        fields = ['age', 'gender', 'blood_group', 'house_name', 'house_number', 'job', 'phone', 'photo']
+        fields = ['dob', 'gender', 'blood_group', 'house_name', 'house_number', 'job', 'phone', 'photo']
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileUpdateForm, self).__init__(*args, **kwargs)
+        # if self.fields['dob']:
+        #     self.fields['dob'].widget.attrs['disabled'] = True
+        # if self.fields['gender']:
+        #     self.fields['gender'].widget.attrs['disabled'] = True
+        # if self.fields['blood_group']:
+        #     self.fields['blood_group'].widget.attrs['disabled'] = True
+

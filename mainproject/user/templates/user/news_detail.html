@@ -1,0 +1,32 @@
+{% extends 'user/newslist.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Servants{% endblock %}
+
+{% block body %}
+{% block content%}<h2><center>{{ news.heading }}</center> </h2>{% endblock %}
+<div class="main">
+
+        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+
+                               <br>
+                                 <center><img src="{{ news.photo.url }}" alt="Image" height="300px" width="700px"  class="img-responsive"></center><br>
+                                <strong>{{ news.date }}</strong><br>
+                            <br>
+                                {{news.detail}}
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

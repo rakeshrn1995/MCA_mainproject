@@ -22,13 +22,13 @@ class BloodGrp(models.Model):
 
 class RegUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    age = models.IntegerField(default=0)
+    dob = models.DateField(null=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     blood_group = models.ForeignKey(BloodGrp, on_delete=models.CASCADE, default=2)
-    job = models.CharField(max_length=50, blank=True, null=False)
-    house_name = models.CharField(max_length=100, blank=True, null=False)
-    house_number = models.CharField(max_length=50, blank=True, null=False)
-    phone = models.CharField(max_length=10, blank=True, null=False)
+    job = models.CharField(max_length=50, blank=True,)
+    house_name = models.CharField(max_length=100, blank=True )
+    house_number = models.CharField(max_length=50, blank=True)
+    phone = models.CharField(max_length=10, blank=True )
     photo = models.ImageField(upload_to='profilepics/', blank=True, default='profilepics/default.jpg')
 
     def get_absolute_url(self):

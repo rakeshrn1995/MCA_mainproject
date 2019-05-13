@@ -1,0 +1,77 @@
+
+{% extends 'login/homepage.html' %}
+ {% block body %}
+{% block content%}<h2><center>News Today</center> </h2>{% endblock %}
+<div class="wrapper col3">
+
+
+</div>
+<div class="wrapper col4">
+
+</div>
+<div class="wrapper col5">
+  <div id="container">
+<!--    <div id="content">-->
+     {% for news in news_list %}
+
+                               <h2> {{ news.heading }}</h2>
+                                 <img src="{{ news.photo.url }}" alt="Image" height="300px" width="700px"  class="img-responsive"><br>
+                                <strong>{{ news.date }}</strong><br>
+
+                                <a href="{% url 'login:newsdetail' news.id %}" class="btn-btn-primary" >Read More</a>
+                                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {% endfor %} </div>
+<!--    <div id="column">-->
+<!--      <div class="holder">-->
+<!--        <h2>Nullamlacus loborttis</h2>-->
+<!--        <ul id="latestnews">-->
+<!--          <li> <img class="imgl" src="images/demo/100x75.gif" alt="" />-->
+<!--            <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>-->
+<!--            <p>Nullamlacus dui ipsum cons eque loborttis non euis que morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque.</p>-->
+<!--          </li>-->
+<!--          <li class="last"> <img class="imgl" src="images/demo/100x75.gif" alt="" />-->
+<!--            <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>-->
+<!--            <p>Nullamlacus dui ipsum cons eque loborttis non euis que morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque.</p>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </div>-->
+    <br class="clear" />
+  </div>
+</div>
+<div class="main">
+    <div class="container-fluid text-center">
+          <div class="row content">
+            <div class="col-sm-2 sidenav">
+<!--              <p><a href="#">Link</a></p>-->
+<!--              <p><a href="#">Link</a></p>-->
+<!--              <p><a href="#">Link</a></p>-->
+            </div>
+            <div class="col-sm-7 text-left" >
+<!--              {% for news in news_list %}-->
+
+<!--                               <h2> {{ news.heading }}</h2>-->
+<!--                                 <center><img src="{{ news.photo.url }}" alt="Image" height="300px" width="700px"  class="img-responsive"></center><br>-->
+<!--                                <strong>{{ news.date }}</strong><br>-->
+
+<!--                                <a href="{% url 'login:newsdetail' news.id %}" class="btn-btn-primary" >Read More</a>-->
+<!--                                <br>-->
+<!--                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--                            {% endfor %}-->
+<!--            </div>-->
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+{% endblock %}

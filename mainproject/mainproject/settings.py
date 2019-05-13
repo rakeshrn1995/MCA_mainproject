@@ -42,7 +42,6 @@ INSTALLED_APPS = [
 
     # local apps
     'login.apps.LoginConfig',
-    'manager.apps.ManagerConfig',
     'user',
     'useradmin',
 ]
@@ -135,3 +134,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PAYMENT_VARIANTS = {
+    'razorpay': ('django_payments_razorpay.RazorPayProvider', {
+        'public_key': 'rzp_test_bMDMTLuhqGBPjx',
+        'secret_key': 'AfQGjmOYNDqBacCUAZyGv7Ry'})}

@@ -1,0 +1,37 @@
+{% extends 'useradmin/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Servants{% endblock %}
+
+{% block body %}
+{% block content%}<h2><center>Servants</center> </h2>{% endblock %}
+<div class="main">
+
+        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                           <table  class="table table-hover">
+
+
+                                {% for servant in servantdetail %}
+                                <tr>
+                                       <td><img src="\media\{{ servant.photo }}" alt="Image" height="50px" width="45px"  class="img-responsive" > <b><h4>{{ servant.first_name }}  {{ servant.last_name}}</h4></b>
+                                           <strong>{{ servant.job_type}}</strong></td>
+
+                                       <td><a href="{% url 'useradmin:servant_detail' servant.id %}" class="btn btn-primary" >Details</a></td>
+
+                                </tr>
+
+                                {% endfor %}
+                            </table>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

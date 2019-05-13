@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.db import connection
+from django.shortcuts import render, redirect, render_to_response, HttpResponse
 from django.views import generic
 
-from .forms import  *
+from user.models import ServantRequest
+from .forms import *
 from .models import *
 
 # Create your views here.
@@ -67,3 +69,94 @@ def add_user_view(request):
             reg.save()
             return redirect('useradmin:add_user')
     return render(request, 'useradmin/add_user.html', {'form': form})
+
+
+def signup_servant_view(request):
+    form = SignUpServantForm
+
+    if request.method == 'POST':
+        form = SignUpServantForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('useradmin:servant_reg')
+
+    return render(request, 'useradmin/servant_reg.html', {'form': form})
+
+
+def dictfetchall(cursor):
+    """Return all rows from a cursor as a dict"""
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
+def servantlist_view(request):
+    servantdetail = RegServant.objects.all()
+    return render(request, 'useradmin/servant_list.html', {'servantdetail': servantdetail})
+
+def servantmanage_view(request, pk):
+    if request.method == 'GET':
+        #servant = RegServant.objects.get(id=pk)
+        cursor = connection.cursor()
+        cursor.execute("""SELECT *
+                               FROM useradmin_regservant WHERE id ='%d'"""%(pk))
+        dict = {}
+        dict = dictfetchall(cursor)
+        print(dict)
+    return render(request, 'useradmin/servant_detail.html', {'dict': dict})
+
+
+class NewsListView(generic.ListView):
+    template_name = 'useradmin/newslist.html'
+    context_object_name = 'news_list'
+
+    def get_queryset(self):
+        return News.objects.all()
+
+class NewsDetailView(generic.DetailView):
+    model = News
+    template_name ='useradmin/news_detail.html'
+
+
+def add_news_view(request):
+    form = NewsForm()
+
+    if request.method == 'POST':
+        form = NewsForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('useradmin:add_news')
+
+    return render(request, 'useradmin/add_news.html', {'form': form})
+
+def ser_req_list(request):
+    ser_req = ServantRequest.objects.filter(status='pending')
+    return render(request, 'useradmin/servant_request_list.html', {'ser_req': ser_req})
+
+def acceptbtn_view(request):
+    if request.method == 'POST':
+        if request.POST.get('accept'):
+            accept = request.POST.get('accept')
+            ServantRequest.objects.filter(pk=accept).update(status='accepted')
+
+            #return HttpResponse(accept)
+            return redirect('useradmin:servant_req')
+        else:
+            reject = request.POST.get('reject')
+            ServantRequest.objects.filter(pk=reject).update(status='rejected')
+            return redirect('useradmin:servant_req')
+
+def maintaintype_view(request):
+    type_form = MaintainTypeForm
+
+    if request.method == 'POST':
+        type_form = MaintainTypeForm(request.POST)
+
+        if type_form.is_valid():
+            type_form.save()
+            return redirect('useradmin:add_type')
+    return render(request, 'useradmin/add_type.html', {'type_form': type_form})
+

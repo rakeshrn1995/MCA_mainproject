@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Resident's  Association{% endblock %}</title>
+    {% load static %}
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="{% static 'login/base.css' %}">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+
+
+    <style>
+    /* Stackoverflow preview fix, please ignore */
+    .navbar-nav {
+      flex-direction: row;
+    }
+
+    .nav-link {
+      padding-right: .5rem !important;
+      padding-left: .5rem !important;
+    }
+
+    /* Fixes dropdown menus placed on the right side */
+    .ml-auto .dropdown-menu {
+      left: auto !important;
+      right: 0px;
+    }
+  </style>
+</head>
+<body>
+    <!--<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">-->
+  <!--<button class="w3-bar-item w3-button w3-large"-->
+  <!--onclick="w3_close()">Close &times;</button>-->
+  <!--<a href="#" class="w3-bar-item w3-button">Link 1</a>-->
+  <!--<a href="#" class="w3-bar-item w3-button">Link 2</a>-->
+  <!--<a href="#" class="w3-bar-item w3-button">Link 3</a>-->
+<!--</div>-->
+
+
+     <nav class="navbar navbar-expand-md bg-dark navbar-dark" >
+      <a class="navbar-brand" href="{% url 'user:home' %}">ORAMS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--<div class="collapse navbar-collapse" id="collapsibleNavbar">-->
+        <!--<ul class="navbar-nav">-->
+          <!--<li class="nav-item">-->
+            <!--<a class="nav-link" href="#">Link</a>-->
+          <!--</li>-->
+          <!--<li class="nav-item">-->
+            <!--<a class="nav-link" href="#">Link</a>-->
+          <!--</li>-->
+          <!--<li class="nav-item">-->
+            <!--<a class="nav-link" href="#">Link</a>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+        <!--<ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:mem_reg' %}"></a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                User
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'useradmin:servant_req' %}">Servant Requests</a>
+                <a class="dropdown-item" href="#">Maintenance</a>
+                <a class="dropdown-item" href="#">Complaints</a>
+
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
+                 Library
+                 </a>
+                <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'user:book_list' %}">View Book</a>
+                <a class="dropdown-item" href="{% url 'user:bookdetail' %}">Add Book</a>
+                &lt;!&ndash;<a class="dropdown-item" href="#">Link 3</a>&ndash;&gt;
+                </div>
+            </li>
+
+    &lt;!&ndash; Dropdown &ndash;&gt;
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                Activities
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'useradmin:add_camp' %}">Add Camp</a>
+                <a class="dropdown-item" href="{% url 'useradmin:add_activity' %}">Add Activity</a>
+                <a class="dropdown-item" href="{% url 'useradmin:camp_view' %}">View Camp Details</a>
+              </div>
+            </li>
+
+
+         <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                Servants
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'useradmin:servant_reg' %}">Add Servants</a>
+                <a class="dropdown-item" href="{% url 'useradmin:servant_list' %}">Servant List</a>
+
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                News
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'useradmin:add_news' %}">Add News</a>
+                <a class="dropdown-item" href="{% url 'useradmin:newslist' %}">View</a>
+              </div>
+            </li>
+        </ul>
+
+
+         <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'user:logout' %}">Log out</a>
+              </div>
+            </li>
+         </ul>-->
+       </nav>
+    <br>
+
+    <div>
+
+    </div>
+        {% block body %}
+            {% block content%}<h2><center>News Today</center> </h2>{% endblock %}
+<div class="main">
+    <div class="container-fluid text-center">
+          <div class="row content">
+            <div class="col-sm-2 sidenav">
+<!--              <p><a href="#">Link</a></p>-->
+<!--              <p><a href="#">Link</a></p>-->
+<!--              <p><a href="#">Link</a></p>-->
+            </div>
+            <div class="col-sm-7 text-left" >
+              {% for news in news_list %}
+
+                               <h2> {{ news.heading }}</h2>
+                                 <center><img src="{{ news.photo.url }}" alt="Image" height="300px" width="700px"  class="img-responsive"></center><br>
+                                <strong>{{ news.date }}</strong><br>
+
+                                <a href="{% url 'user:newsdetail' news.id %}" class="btn-btn-primary" >Read More</a>
+                                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {% endfor %}
+            </div>
+            <div class="col-sm-3 sidenav" >
+<!--              <div class="well">-->
+<!--                <p>ADS</p>-->
+              </div>
+              <div class="well">
+                <p>ADS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+        {% endblock %}
+</body>
+</html>

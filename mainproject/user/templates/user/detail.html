@@ -18,12 +18,13 @@
                                 <div class="col-sm-4 col-md-3">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
+                                            <form >
                                              <table style=" border-collapse: separate; border-spacing: 60px;">
                                                 <tr>
                                                     <th>
                                                 <!--give modelname in lowercase for detailview-->
                                                 {% if bookdetail.image %}
-                                                    <img src="{{ bookdetail.image.url }}" class="img-responsive" height="200px">
+                                                    <img src="{{ bookdetail.image.url }}" class="img-responsive" height="200px" >
                                                 {% else %}
                                                     <h3>No image to display</h3>
                                                 {% endif %}
@@ -40,6 +41,7 @@
                                             </td>
                                                 </tr>
                                                 </table>
+                                                </form>
 
                                         </div>
                                     </div>

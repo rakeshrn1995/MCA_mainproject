@@ -6,7 +6,7 @@
 
 
 {% block body %}
-{% block content%}<h4>Add Activities</h4>{% endblock %}
+{% block content%}<center><h4>Add Activity Categories</h4></center>{% endblock %}
 <div class="main">
 
         <div class="container-fluid" style="width:800px; margin:20px auto;"   >
@@ -15,7 +15,16 @@
                         <div class="panel-body">
                             <form method="post" >
                                 {% csrf_token %}
-                                {{ form|crispy }}
+
+                                <div class="form-row">
+                                  <div class="form-group col-md-9 mb-0">
+                                    {{ form.category_name|as_crispy_field }}
+                                  </div>
+                                </div>
+
+
+
+
 
                                 <div class="wrapper"><input type="submit" class="btn btn-primary" value="Add" /></div>
                             </form>

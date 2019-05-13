@@ -1,0 +1,36 @@
+{% extends 'user/Userbase.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Member Details{% endblock %}
+
+{% block content%}<h4><center></center></h4>
+{% endblock %}
+{% block body %}
+<div class="main">
+
+        <div class="container-fluid" style="width:500px; margin:80px auto;"   >
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+                               <center><h2>{{ campregistration.category_name }}</h2></center>
+                                 <table class="table table-borderless">
+                                    <tr>
+                                        <th> <b>Name: </b></th><th>{{ campregistration.name }}</th></tr>
+                                      <tr><th> <b>Conducting Date:</b></th><th>{{ campregistration.conduct_date }}</th></tr>
+                                       <tr>  <th> <b>Time:</b></th><th>{{ campregistration.time }}</th></tr>
+                                      <tr> <th> <b>Location: </b></th><th> {{ campregistration.location }}</th></tr>
+                                      <tr>
+                                    <th>{% if campregistration.payment == 'yes' %}
+                                            <a href="#">Payment Required </a>
+                                        {% endif %}</th>
+                                        <th><strong> <a href="{{ campregistration.file.url }}">More Details</a></strong>
+                                    </th>
+                                    </tr>
+                                    </table>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,20 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils import timezone
 from login.models import BloodGrp
-from manager.models import JobType
-from manager.models import RegServant
+from useradmin.models import JobType
+from useradmin.models import RegServant, CampRegistration
 # Create your models here.
 
 
 GENDER_CHOICES = (('male', 'Male'), ('female', 'Female'))
+DAY_CHOICES = (('full', 'Full Day'), ('half', 'Half Day'))
 # LANG_CHOICES = (('english', 'English'), ('malayalam', 'Malayalam'), ('hindi', 'Hindi'))
 
 
 class MemReg(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    age = models.IntegerField(default=0)
+    dob = models.DateField(auto_now=False, auto_now_add=False)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     blood_group = models.ForeignKey(BloodGrp, on_delete=models.CASCADE)
     job = models.CharField(max_length=50, blank=True, null=False)
@@ -54,19 +56,19 @@ class BookDetail(models.Model):
     #     return reverse('user:detail', kwargs={'pk': self.pk})
 
 
-
-class MaintainType(models.Model):
-    type_name = models.CharField(max_length=100)
-
+class Type(models.Model):
+    type = models.CharField(max_length=100)
     def __str__(self):
-        return self.type_name
+        return self.type
+
 
 class MaintainRegister(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
-    type = models.ForeignKey(MaintainType, on_delete=models.CASCADE)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE)
     subject = models.CharField(max_length=500)
-    description = models.TextField()
-    requested_date = models.DateField(auto_now=False, auto_now_add=False)
+    description = models.TextField(null=True)
+    requested_date = models.DateField(default=timezone.now)
+    solved_date = models.DateField(null=True)
     status = models.BooleanField(default=False)
 
     def __str__(self):
@@ -76,9 +78,15 @@ class ServantRequest(models.Model):
     username = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(JobType, on_delete=models.CASCADE)
     servant = models.ForeignKey(RegServant, on_delete=models.CASCADE)
-    date = models.DateField(auto_now=False, auto_now_add=False)
-    description = models.TextField()
-    status = models.CharField(max_length=50)
+    date = models.DateField(default=timezone.now)
+    request_date = models.DateField(auto_now=False, auto_now_add=False)
+    day_choice = models.CharField(max_length=20, choices=DAY_CHOICES)
+    description = models.TextField(null=True)
+    status = models.CharField(max_length=50, default='pending')
 
     def __str__(self):
         return self.job
+
+class CampRegister(models.Model):
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    camp_name = models.ForeignKey(CampRegistration, on_delete=models.CASCADE)

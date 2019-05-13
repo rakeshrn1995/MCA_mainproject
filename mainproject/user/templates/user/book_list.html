@@ -15,7 +15,12 @@
         <div class="container-fluid" style="width:800px; margin:20px auto;"   >
             <form method="post" id="RequestForm" data-book-lang-url="{% url 'user:ajax_load_language' %}">
                  {% csrf_token %}
-                {{ form|crispy }}
+                <div class="form-row">
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form|crispy }}
+                          </div>
+                </div>
+
                <!-- <fieldset>
                     <p>
                         <label>Select Language</label>
@@ -42,11 +47,11 @@
                                     {% for book in book_list %}
                                         <div class="col-sm-4 col-md-4" style="padding-bottom: 50px;font-family:monospace;">
                                             <div class="thumbnail" >
-                                                <a href="#">
+                                                <a href="{% url 'user:detail' book.id %}" >
                                                         <img src="{{ book.image.url }}" alt="Image" height="200px" width="150px"  class="img-responsive">
                                                 </a>
                                                 <div class="caption">
-                                                    <h4 style="color: white;">{{ book.book_name }}</h4>
+                                                    <h4 style="color: blueviolet;">{{ book.book_name }}</h4>
                                                     <b style="font-size:20px">{{ book.author }}</b><br>
                                                     <small style="font-size:15px"> {{ book.language }}</small>
 

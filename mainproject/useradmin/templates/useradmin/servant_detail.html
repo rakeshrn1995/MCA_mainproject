@@ -1,0 +1,62 @@
+{% extends 'useradmin/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Servants{% endblock %}
+
+{% block body %}
+{% block content%}<h2><center></center> </h2>{% endblock %}
+<style>
+    b{
+        color: #002bff;
+    }
+</style>
+<div class="main">
+
+        <div class="container-fluid" style="width:800px; margin:20px auto;"   >
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                          <table class="table">
+
+
+                                {% for detail in dict %}
+                              <br>
+
+                              <tr>
+                                  <th><img src="\media\{{ detail.photo }}" alt="Image" height="150px" width="130px"  class="img-responsive" ></th>
+                                  </tr>
+                                <tr>
+                                  <th><h4>{{ detail.first_name }} {{ detail.last_name }}</h4></th>
+                                  </tr>
+                              <tr>
+                                  <th><b>Address: </b><strong>{{ detail.address }}</strong></b></th>
+                                  </tr>
+                              <tr>
+                                  <th><b>Date Of Birth: </b>{{ detail.dob }}</b></th>
+                                  </tr>
+                              <tr>
+                                  <th><b>Gender: </b>{{ detail.gender }}</b></th>
+                                  </tr>
+                              <tr>
+                                  <th><b>Job: </b>{{ detail.job_type }}</b></th>
+                                  </tr>
+                              <tr>
+                                  <th><b>Date of Joining: </b>{{ detail.date_of_joining }}</b></th>
+                                  </tr>
+                              <tr>
+                                  <th><b>Status: </b>{{ detail.status }}</b></th>
+                                  </tr>
+
+                                {% endfor %}
+
+                            </table>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

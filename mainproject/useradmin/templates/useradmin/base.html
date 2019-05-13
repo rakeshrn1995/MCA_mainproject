@@ -14,6 +14,7 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 
+
     <style>
     /* Stackoverflow preview fix, please ignore */
     .navbar-nav {
@@ -43,7 +44,7 @@
 
 
      <nav class="navbar navbar-expand-md bg-dark navbar-dark" >
-      <a class="navbar-brand" href="{% url 'useradmin:admin_home' %}">Home</a>
+      <a class="navbar-brand" href="{% url 'useradmin:admin_home' %}">ORAMS</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -64,16 +65,29 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'user:mem_reg' %}"></a>
             </li>
+
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
-                 Library
-                 </a>
-                <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'user:book_list' %}">View Book</a>
-                <a class="dropdown-item" href="{% url 'user:bookdetail' %}">Add Book</a>
-                <!--<a class="dropdown-item" href="#">Link 3</a>-->
-                </div>
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                User
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'useradmin:add_user' %}">Add User</a>
+                <a class="dropdown-item" href="{% url 'useradmin:servant_req' %}">Servant Requests</a>
+                <a class="dropdown-item" href="#">Maintenance</a>
+                <a class="dropdown-item" href="#">Complaints</a>
+
+              </div>
             </li>
+<!--            <li class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">-->
+<!--                 Library-->
+<!--                 </a>-->
+<!--                <div class="dropdown-menu">-->
+<!--                <a class="dropdown-item" href="{% url 'user:book_list' %}">View Book</a>-->
+<!--                <a class="dropdown-item" href="{% url 'user:bookdetail' %}">Add Book</a>-->
+<!--                &lt;!&ndash;<a class="dropdown-item" href="#">Link 3</a>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </li>-->
 
     <!-- Dropdown -->
             <li class="nav-item dropdown">
@@ -82,7 +96,7 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'useradmin:add_camp' %}">Add Camp</a>
-                <a class="dropdown-item" href="{% url 'useradmin:add_activity' %}">Add Activity</a>
+                <a class="dropdown-item" href="{% url 'useradmin:add_activity' %}">Add Category</a>
                 <a class="dropdown-item" href="{% url 'useradmin:camp_view' %}">View Camp Details</a>
               </div>
             </li>
@@ -90,12 +104,22 @@
 
          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
-                Others
+                Servants
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'user:maintain' %}">Maintenance</a>
-                <a class="dropdown-item" href="{% url 'user:servant_request' %}">Servant Request</a>
-                <a class="dropdown-item" href="#">Link 3</a>
+                <a class="dropdown-item" href="{% url 'useradmin:servant_reg' %}">Add Servants</a>
+                <a class="dropdown-item" href="{% url 'useradmin:servant_list' %}">Servant List</a>
+
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
+                News
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'useradmin:add_news' %}">Add News</a>
+                <a class="dropdown-item" href="{% url 'useradmin:newslist' %}">View</a>
               </div>
             </li>
         </ul>
@@ -104,11 +128,9 @@
          <ul class="navbar-nav ml-auto">
 
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Profile</a>
-                <a class="dropdown-item" href="#">Reset Password</a>
-                <a class="dropdown-item" href="#">Log out</a>
+                <a class="dropdown-item" href="{% url 'user:logout' %}">Log out</a>
               </div>
             </li>
          </ul>

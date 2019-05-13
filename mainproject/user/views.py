@@ -1,12 +1,15 @@
 from django.contrib import messages
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
 from django.shortcuts import render,get_object_or_404,redirect
 from django.views import generic
 from django.views.generic.edit import FormMixin
-from manager.models import RegServant
 from django.db import connection
+from useradmin.models import *
 from .forms import *
 from django.shortcuts import redirect
 from login import config
+
 
 # Create your views here.
 
@@ -28,7 +31,8 @@ def memreg_view(request):
 
 
 def home_page(request):
-    return render(request, 'user/Userbase.html')
+    un = config.username
+    return render(request, 'user/Userbase.html', {'un': un})
 
 
 def book_detail_view(request):
@@ -47,10 +51,10 @@ def book_detail_view(request):
 
 
 def profile_view(request):
-    u_form = UserUpdateForm
-    p_form = UserProfileUpdateForm
+    u_form = UserUpdateForm(instance=request.user)
+    p_form = ProfileUpdateForm(instance=request.user.reguser)
 
-    return render(request, 'user/profile_update.html', {'u_form': u_form, 'p_form': p_form})
+    return render(request, 'user/profile_update.html',{'u_form': u_form, 'p_form': p_form})
 
 def check_view(request):
     post = BookDetail.objects.get(id=5)
@@ -89,9 +93,6 @@ class BookListView(generic.ListView, FormMixin):
         context['form'] = self.get_form()
 
         return context
-
-
-
 
 
 
@@ -190,10 +191,45 @@ def load_lang(request):
 #     template_name = 'user/profile_update.html'
 
 
+class CampListView(generic.ListView):
+    template_name = 'user/campview.html'
+    context_object_name = 'camp_list'
+
+    def get_queryset(self):
+        return CampRegistration.objects.filter(status='pending')
+
+
+
+class CampDetailView(generic.DetailView):
+    model = CampRegistration
+    template_name ='user/campdetail.html'
+
+def maintainregister_view(request):
+    if request.method == 'POST':
+        form = MaintainForm(request.POST)
+
+        if form.is_valid():
+            print("Inside isvalid")
+            form.save(commit=True)
+            return redirect('user:maintain')
+    else:
+        form = MaintainForm()
+    return render(request, 'user/maintain.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
 def member_list_view(request):
     #mem_detail = MemReg.objects.all()
     cursor = connection.cursor()
-    cursor.execute("""SELECT * FROM user_memreg WHERE username_id ='%d'"""%(int(config.u_id)))
+    cursor.execute("""SELECT * FROM user_memreg WHERE username_id ='%d'""" % (int(config.u_id)))
     mem_detail = {}
     mem_detail = dictfetchall(cursor)
     print(mem_detail)
@@ -230,3 +266,26 @@ def user_reg_view(request):
         'r_form': r_form
     }
     return render(request, 'user/user_reg.html', context)
+
+class NewsListView(generic.ListView):
+    template_name = 'user/newslist.html'
+    context_object_name = 'news_list'
+
+    def get_queryset(self):
+        return News.objects.all()
+
+class NewsDetailView(generic.DetailView):
+    model = News
+    template_name ='user/news_detail.html'
+
+
+def payment_view(request):
+    return render(request, 'user/payment.html')
+
+
+def user_logout(request):
+    if request.method == "GET":
+        print("hi")
+        logout(request)
+        return HttpResponseRedirect(reverse('login:homepage'))
+

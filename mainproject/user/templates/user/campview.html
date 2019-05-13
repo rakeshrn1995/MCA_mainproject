@@ -1,0 +1,45 @@
+{% extends 'user/Userbase.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Member Details{% endblock %}
+
+{% block content%}<h4><center>Upcoming Activities</center></h4>
+{% endblock %}
+{% block body %}
+<style>
+    strong{
+        color: #40d814;
+    }
+
+</style>
+<div class="main">
+
+        <div class="container-fluid" style="width:500px; margin:80px auto;"   >
+                <div class="col-sm-4 col-md-5 col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                                <table  class="table">
+
+                                {% for camp in camp_list %}
+                               <thead class="thead-light"><th> <b>{{ camp.category_name }}</b><br></th>
+                               <th><a href="{% url 'user:campdetail' camp.id %}">View</a> </th></thead>
+                                   <tr>
+                                       <td><strong>Name:</strong> </td><td>{{ camp.name }}<br></td></tr>
+                                      <tr> <td><strong> Location: </strong></td><td>{{ camp.location }}<br></td></tr>
+                                       <tr><td><strong>Date:</strong>  </td><td>{{ camp.conduct_date }}<br></td></tr>
+
+
+
+                                {% endfor %}
+
+
+                            </table>
+
+
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+{% endblock %}

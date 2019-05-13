@@ -13,7 +13,7 @@
                 <div class="col-sm-4 col-md-5 col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form method="post" autocomplete="off" >
+                            <form method="post" autocomplete="off" enctype="multipart/form-data">
                                 {% csrf_token %}
 
                                 <!--{{ form|crispy }}-->
@@ -37,7 +37,7 @@
 
                                             <div class="form-row">
                                                   <div class="form-group col-md-3 mb-0">
-                                                    {{ r_form.age|as_crispy_field }}
+                                                    {{ r_form.dob|as_crispy_field }}
                                                   </div>
                                                   <div class="form-group col-md-6 mb-0">
                                                     {{ r_form.gender|as_crispy_field }}
@@ -70,8 +70,8 @@
                                                   <div class="form-group col-md-8 mb-0">
                                                     {{ r_form.photo|as_crispy_field }}
                                                   </div>
-
-                                 <div class="wrapper"><input type="submit" class="btn btn-primary" value="Signup" /></div>
+                                            </div>
+                                 <div class="wrapper"><input type="submit" class="btn btn-primary" value="Update" /></div>
 
                             </form>
                         </div>
@@ -80,4 +80,7 @@
 
         </div>
     </div>
+ <script>
+     $('#id_dob').datepicker({ uiLibrary: 'bootstrap4', modal: true, footer: true });
+ </script>
 {% endblock %}

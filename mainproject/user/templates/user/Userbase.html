@@ -16,6 +16,9 @@
 
     <style>
     /* Stackoverflow preview fix, please ignore */
+   body{
+    background: whitesmoke url("images/linear-gradient.png ")!important;
+    }
     .navbar-nav {
       flex-direction: row;
     }
@@ -43,10 +46,10 @@
 
 
      <nav class="navbar navbar-expand-md bg-dark navbar-dark" >
-      <a class="navbar-brand" href="{% url 'user:home' %}">Home</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand" href="{% url 'user:home' %}">ORAMS</a>
+<!--      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--      </button>-->
       <!--<div class="collapse navbar-collapse" id="collapsibleNavbar">-->
         <!--<ul class="navbar-nav">-->
           <!--<li class="nav-item">-->
@@ -82,14 +85,18 @@
                 <!--<a class="dropdown-item" href="#">Link 3</a>-->
                 </div>
             </li>
-
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown " href="{% url 'user:newslist' %}" id="navbardrop1" >
+                 News
+                 </a>
+            </li>
     <!-- Dropdown -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop2" data-toggle="dropdown">
                 Activities
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'user:user_reg' %}">Link 1</a>
+                <a class="dropdown-item" href="{% url 'user:campview' %}">View</a>
                 <a class="dropdown-item" href="#">Link 2</a>
                 <a class="dropdown-item" href="#">Link 3</a>
               </div>
@@ -101,10 +108,20 @@
                 Services
               </a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="{% url 'user:maintain' %}">Maintenance</a>
+                <a class="dropdown-item" href="{% url 'user:maintain' %}">Complaints</a>
                 <a class="dropdown-item" href="{% url 'user:servant_request' %}">Servant Request</a>
-                <a class="dropdown-item" href="#">Link 3</a>
+                <a class="dropdown-item" href="https://paytm.com/electricity-bill-payment/kerala">Electricity Bill</a>
               </div>
+            </li>
+             <li class="nav-item dropdown">
+                <a class="nav-link dropdown " href="#" id="navbardrop1" >
+                 Notifications
+                 </a>
+            </li>
+             <li class="nav-item dropdown">
+                <a class="nav-link dropdown " href="#" id="navbardrop1" >
+                 About
+                 </a>
             </li>
         </ul>
 
@@ -114,9 +131,9 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="{% url 'user:user_reg' %}">Profile</a>
                 <a class="dropdown-item" href="#">Reset Password</a>
-                <a class="dropdown-item" href="#">Log out</a>
+                <a class="dropdown-item" href="{% url 'user:logout' %}">Log out</a>
               </div>
             </li>
          </ul>

@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3 mb-0">
-                                        {{ form.age|as_crispy_field }}
+                                        {{ form.dob|as_crispy_field }}
                                     </div>
                                     <div class="form-group col-md-6 mb-0">
                                         {{ form.gender|as_crispy_field }}
@@ -56,13 +56,16 @@
 
                                     </div>
                                 </div>
-                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Signup" /></div>
+                                <div class="wrapper"><input type="submit" class="btn btn-primary" value="Add" /></div>
                             </form>
                         </div>
                     </div>
                 </div>
         </div>
     </div>
+<script>
+     $('#id_dob').datepicker({ uiLibrary: 'bootstrap4', modal: true, footer: true });
+ </script>
 {% endblock %}
 
 

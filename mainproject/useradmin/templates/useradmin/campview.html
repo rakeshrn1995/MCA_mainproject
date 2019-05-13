@@ -1,26 +1,27 @@
 {% extends 'useradmin/base.html' %}
 {% load crispy_forms_tags %}
-{% block title %}Add Medical Camp{% endblock %}
+{% block title %}Camp Details{% endblock %}
 
 {% block body %}
-{% block content%}<h2><center>Medical Camp Details</center> </h2>{% endblock %}
+{% block content%}<h2><center>Camp Details</center> </h2>{% endblock %}
 <div class="main">
 
         <div class="container-fluid" style="width:800px; margin:20px auto;"   >
                 <div class="col-sm-4 col-md-5 col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                           <table  cellpadding="15">
+                           <table  class="table table-striped">
 
                                 {% for camp in camp_list %}
                                <thead><th> <b>{{ camp.category_name }}</b><br></th>
-                               <th><a href="#">Update</a>  <a href="#"> Delete</a></th></thead>
+                               <th><a href="#">Update</a></th><th><a href="#"> Delete</a></th></thead>
                                    <tr>
-                                       <td><strong>Name:</strong> {{ camp.name }}<br>
-                                   <strong> Location: </strong>{{ camp.location }}<br>
+                                       <td><strong>Name:</strong> <b style="color: #993300"> {{ camp.name }}</b><br>
+                                   <strong> Location: </strong> {{ camp.location }}<br>
                                   <strong>Date:</strong>  {{ camp.conduct_date }}<br>
                                    <strong>Time:</strong>  {{ camp.time }}<br>
-                                    <strong> Status:</strong>{{ camp.status }}<br></td>
+                                    <strong>Payment:</strong>  {{ camp.payment }}<br>
+                                    <strong> Status:</strong> {{ camp.status }}<br></td>
                                    </tr>
 
                                 {% endfor %}

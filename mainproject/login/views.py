@@ -1,4 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
+from django.views import generic
+
+from useradmin.models import *
 from .forms import *
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
@@ -33,13 +36,19 @@ def login_def(request):
         # print(password)
         user = authenticate(request, username=username, password=password)
 
-        if user.is_superuser:
-            return render(request, 'useradmin/adminhome.html')
-        elif user:
-            login(request, user)
-            config.username = str(user.username)
-            config.u_id = str(user.id)
-            print(type(config.username))
+
+        if user:
+            if user.is_superuser:
+                login(request, user)
+                config.username = str(user.username)
+                config.u_id = str(user.id)
+                print(type(config.username))
+                return render(request, 'useradmin/adminhome.html')
+            else:
+                login(request, user)
+                config.username = str(user.username)
+                config.u_id = str(user.id)
+                print(type(config.username))
 
            # print('checking')
             return render(request, 'user/Userbase.html', {'un': username})
@@ -87,3 +96,20 @@ def test_view(request):
     return render(request, 'login/test.html')
 
 
+def index_view(request):
+    return render(request, 'login/homepage.html')
+
+def mission_view(request):
+    return render(request, 'login/mission.html')
+
+
+class NewsListView(generic.ListView):
+    template_name = 'login/news_homepage.html'
+    context_object_name = 'news_list'
+
+    def get_queryset(self):
+        return News.objects.all()
+
+class NewsDetailView(generic.DetailView):
+    model = News
+    template_name ='login/news_detail.html'
